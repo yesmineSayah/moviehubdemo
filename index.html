@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movies</title>
+    <link rel="stylesheet" href="./bootstrap.css">
+</head>
+
+<body ng-app="app">
+    <div class="container" ng-controller="MainController">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Movie HUB: Admin Dashboard</h1>
+            </div>
+            <div class="col-12 text-center">
+                <p>Dear Admin: Please make sure our movies are better than Rotten Tomatoes</p>
+            </div>
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Actors</th>
+                        <th>Director</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat='movie in movies '>
+
+                        <td>{{movie.title}}</td>
+                        <td>{{movie.duration}} mn</td>
+                        <td>{{movie.actors}}</td>
+                        <td>{{movie.director}}</td>
+                        <td>
+                            <button ng-click="selectButton(movie)">Select</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-primary" ng-click="addButton()">New Movie</button>
+                    </div>
+                    <div class="col-12">
+                        <div ng-show="visible">
+                            <form>
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type='text' class="form-control" ng-model="movie.title">
+                                </div>
+                                <div class="form-group">
+                                    <label>Duration</label>
+                                    <input type='number' class="form-control" ng-model="movie.duration">
+                                </div>
+                                <div class="form-group">
+                                    <label>Actors</label>
+                                    <input type='text' class="form-control" ng-model="movie.actors">
+                                </div>
+                                <div class="form-group">
+                                    <label>Director</label>
+                                    <input type='text' class="form-control" ng-model="movie.director">
+                                </div>
+                                <button class="btn btn-primary" ng-click="addMovie()" ng-show="typeAdd" style="margin-bottom:200px;">
+                Add Movie
+              </button>
+                                <button class="btn btn-info" ng-click="editMovie()" ng-show="!typeAdd" style="margin-bottom:200px;">
+                Edit Movie
+              </button>
+                                <button class="btn btn-danger" ng-click="removeMovie()" ng-show="!typeAdd" style="margin-bottom:200px;">
+                Remove Movie
+              </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="./angular.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
